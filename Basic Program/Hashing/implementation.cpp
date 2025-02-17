@@ -1,6 +1,3 @@
-#include<iostream>
-#include<vector>
-#include<list>
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -9,7 +6,7 @@ class Hashing {
 
     vector<list<int>> hashtable;
     int buckets;
-
+public:
     Hashing(int size)
     {
         buckets = size;
@@ -20,23 +17,27 @@ class Hashing {
     {
         return key % buckets ; 
     }
-    void add (int key)
+    void addkey (int key)
     {
         int idx = hashvalue(key);
         hashtable[idx].push_back(key);
     }
 
-    list<int> :: iterator search(int key)
+    list<int> :: iterator searchkey(int key)
     {
         int idx = hashvalue(key);
         return find(hashtable[idx].begin() , hashtable[idx].end() , key);
     }
 
-    void Delete(int key)
+    void Deletekey(int key)
     {
         int idx = hashvalue(key);
-        hashtable[idx].erase(search(key));
-
+        if(searchkey(key) != hashtable[idx].end())
+        {
+            hashtable[idx].erase(searchkey(key));
+            cout<<key << "is deleted" <<endl ;
+        }
+        else cout <<key << "is not present"<<endl ;
     }
 
 };
@@ -44,5 +45,5 @@ class Hashing {
 
 int main()
 {
-
+     Hashing(10);
 }
